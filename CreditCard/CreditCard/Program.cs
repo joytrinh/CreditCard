@@ -43,7 +43,20 @@ namespace CreditCard
                 }
                 string stringOfChecksum = checksum.ToString();
                 if (stringOfChecksum[stringOfChecksum.Length - 1].ToString() == "0")
-                    Console.WriteLine("The credit card is valid.");
+                {
+                    if (value.Length == 15 && value[0].ToString() == "3" && (value[1].ToString() == "4" || value[1].ToString() == "7"))
+                    {
+                        Console.WriteLine("This is a valid Amex card.");
+                    }
+                    if (value.Length == 16 && value[0].ToString() == "5" && (value[1].ToString() == "1" || value[1].ToString() == "2" || value[1].ToString() == "3" || value[1].ToString() == "4" || value[1].ToString() == "5"))
+                    {
+                        Console.WriteLine("This is a valid MasterCard.");
+                    }
+                    if ((value.Length == 13 || value.Length == 16) && value[0].ToString() == "4")
+                    {
+                        Console.WriteLine("This is a valid Visa card.");
+                    }                    
+                }                    
                 else
                     Console.WriteLine("The credit card is INVALID.");
             }                
