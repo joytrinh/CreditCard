@@ -23,26 +23,26 @@ namespace CreditCard
                 }
                 int[] arr = num.ToArray();
                 int checksum = 0;
-                for (int i = 1; i < arr.Length;)
+                for (int i = arr.Length - 2; i >= 0;)
                 {
                     int n = arr[i]*2;
                     if (n < 10)
                         checksum += n;
                     else
                     {
-                        string s = (n).ToString();
+                        string s = n.ToString();
                         checksum += int.Parse(s[0].ToString()) + int.Parse(s[1].ToString());
                     }
-                    i += 2;
+                    i -= 2;
                 }
-                for (int i = 0; i < value.Length - 1;)
+                for (int i = arr.Length - 1; i >= 0;)
                 {
                     int m = int.Parse(arr[i].ToString());
                     checksum += m;
-                    i += 2;
+                    i -= 2;
                 }
-                char[] stringOfChecksum = checksum.ToString().ToArray();
-                if (stringOfChecksum[1] == 0)
+                string stringOfChecksum = checksum.ToString();
+                if (stringOfChecksum[stringOfChecksum.Length - 1].ToString() == "0")
                     Console.WriteLine("The credit card is valid.");
                 else
                     Console.WriteLine("The credit card is INVALID.");
@@ -50,8 +50,6 @@ namespace CreditCard
             else
                 Console.WriteLine("Unable to parse '{0}'", value);
             Console.ReadLine();
-            //Starting at second to last digit, multiply every other digit by 2
-            
         }
     }
 }
